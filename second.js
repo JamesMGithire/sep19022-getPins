@@ -12,14 +12,12 @@ function shifter(arr, num, p) {
     }
 }
 function getPossible(pinArr) {
-    let pinArr0 = pinArr.map(el=>"0")
+    let pinArr0 = pinArr.map(el => "0")
     for (let i = 0; i < 3; i++)
         shifter(pinArr0, i, 0);
 }
-function getPINs(pin) {
-    let strPin = `${pin}`;
-    let pinArr = strPin.split("");
-    getPossible(pinArr);
+
+function pinCombo(pinArr) {
     let possibleObj = {
         "1": ["1", "2", "3"],
         "2": ["2", "1", "4"],
@@ -36,6 +34,20 @@ function getPINs(pin) {
         }
         possiblePins.add(possibleArray.join(""));
     })
-    console.log(possiblePins.size);
+    return possiblePins;
 }
-getPINs(12422443)
+
+function getPINs(pin) {
+    let strPin = `${pin}`;
+    let pinArr = strPin.split("");
+    let validPin = pinArr.every(dig => dig === "1" || dig === "2" || dig === "3" || dig === "4");
+    if (validPin) {
+        getPossible(pinArr);
+        let possiblePins = pinCombo(pinArr);
+        console.log(possiblePins.size);
+    }
+    else {
+        console.log("Invalid PIN");
+    }
+}
+getPINs(1242442443)
