@@ -27,8 +27,7 @@ function getPINs(pin) {
         "4": ["4", "2", "3"]
     }
     let possiblePins = new Set();
-    let combosArray = [...combos];
-    combosArray.map(val => {
+    combos.forEach(val => {
         let decimalArr = (val.split(""));
         decimalArr = decimalArr.map(el => parseInt(el));
         let possibleArray = [];
@@ -37,6 +36,6 @@ function getPINs(pin) {
         }
         possiblePins.add(possibleArray.join(""));
     })
-    console.log(possiblePins);
+    console.log(possiblePins.size);
 }
-getPINs(124243)
+getPINs(12422443)
